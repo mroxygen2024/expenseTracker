@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "ts-node-dev --esm --respawn src/app.ts",
+    "dev": "node --loader ts-node/esm src/app.ts",
     "build": "tsc",
     "start": "node dist/app.js"
   },
@@ -21,6 +21,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3",
+    "ts-node": "^10.9.2",
     "zod": "^4.1.12"
   },
   "devDependencies": {
