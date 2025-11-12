@@ -1,0 +1,342 @@
+openapi: 3.0.0
+info:
+  title: expenseTracker
+  contact: {}
+  version: '1.0'
+  x-codegen-settings:
+    Nullify404: false
+    GenerateAsyncCode: true
+    UseMethodPrefix: false
+    UseModelPostfix: false
+    UseControllerPrefix: true
+    ControllerPostfix: Api
+    UseEnumPostfix: false
+    CollectParameters: false
+    UseConstructorsForConfig: false
+    UseCommonSDKLibrary: false
+    iOSUseAppInfoPlist: false
+    AndroidUseAppManifest: false
+    BodySerialization: 0
+    UserAgent: '{language}-SDK/{version} [OS: {os-info}, Engine: {engine}/{engine-version}]'
+    EnableAdditionalModelProperties: false
+    PreserveParameterOrder: true
+    AppendContentHeaders: true
+    iOSGenerateCoreData: false
+    GenerateInterfaces: false
+    NodeHttpClient: NODE_REQUEST
+    ValidateRequiredParameters: true
+    JavaUsePropertiesConfig: false
+    Timeout: 30
+    StoreTimezoneInformation: false
+    EnablePHPComposerVersionString: false
+    EnableLogging: true
+    ArraySerialization: Indexed
+    ModelSerializationScheme: Json
+    UseExceptionPrefix: true
+    RunscopeEnabled: false
+    AndroidHttpClient: ANDROID_OK
+    ObjCHttpClient: UNIREST
+    CSharpHttpClient: UNIREST
+    PHPHttpClient: UNIREST
+    JavaHttpClient: JAVA_OK
+    ParameterArrayFormat: ParamArrayWithIndex
+    SecurityProtocols:
+    - Ssl3
+    - Tls
+    GenerateTravisConfig: false
+    GenerateCircleConfig: false
+    GenerateAppveyorConfig: false
+    GenerateJenkinsConfig: false
+    EnableHttpCache: false
+    Retries: 0
+    RetryInterval: 1
+    GenerateAdvancedDocs: true
+    UnderscoreNumbers: true
+    UseSingletonPattern: true
+    DisableLinting: false
+    ApplyCustomizations: []
+    SortResources: false
+    AllowSkippingSSLCertVerification: false
+    DoNotSplitWords:
+    - oauth
+    EnableGlobalUserAgent: true
+    ReturnCompleteHttpResponse: true
+    GenerateModels: true
+    GenerateExceptions: true
+    IgnoreIfNullJson: false
+    DisableDocs: false
+    LiftParameterDescriptionFromCustomType: false
+    ThrowForHttpErrorStatusCodes: true
+    ResponseMapping:
+      Type: Simple
+    ForceKeywordArgsInRuby: false
+    SymbolizeHashKeysInRuby: true
+    UsageExampleEndpoint:
+      Description: ''
+      EndpointGroupName: ''
+      EndpointName: ''
+    IsLatestVersion: false
+    EnableImmutableModels: false
+    GenerateEnums: true
+    BackoffFactor: 2
+    StatusCodesToRetry:
+    - 408
+    - 413
+    - 429
+    - 500
+    - 502
+    - 503
+    - 504
+    - 521
+    - 522
+    - 524
+    RequestMethodsToRetry:
+    - GET
+    - PUT
+    UserConfigurableRetries: true
+    UseEndpointMethodName: false
+    EncodeTemplateParameters: true
+    GenerateExamplesForOptionalFields: false
+    MultitargetDotnetVersions: false
+    BackoffMax: 0
+    RetryOnTimeout: true
+    EnableCookies: false
+    EnableJsonPassThroughForAny: false
+    PascalCaseEnumForCSharp: false
+    PascalCaseEnumForTypeScript: false
+    DisableMultipleAuth: false
+    AddSingleAuthDeprecatedCode: false
+    EnableExperimentalTypeCombinatorGeneration: false
+    ErrorTemplates: {}
+    UseSecuritySchemeNameForSingleAuth: false
+    EnableModelKeywordArgsInRuby: true
+    NullifyEmptyResponses: false
+    ExtendedAdditionalPropertiesSupport: true
+    EnforceStandardizedCasing: true
+    GenerateMetadataForTypeScript: false
+  x-server-configuration:
+    default-environment: production
+    default-server: Server 1
+    environments:
+    - name: production
+      servers:
+      - name: Server 1
+        url: http://localhost:5000/api
+    parameters: []
+  x-image-uri: ''
+servers:
+- url: http://localhost:5000/api
+  variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Misc
+      summary: register
+      operationId: register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/registerrequest'
+              - example:
+                  email: b@b.com
+                  password: '123456'
+            example:
+              email: b@b.com
+              password: '123456'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+  /auth/login:
+    post:
+      tags:
+      - Misc
+      summary: login
+      operationId: login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/loginrequest'
+              - example:
+                  email: b@b.com
+                  password: '123456'
+            example:
+              email: b@b.com
+              password: '123456'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+  /expenses:
+    get:
+      tags:
+      - Misc
+      summary: GET Expenses
+      operationId: GETExpenses
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    post:
+      tags:
+      - Misc
+      summary: ADD Expenses
+      operationId: ADDExpenses
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ADDExpensesRequest'
+              - example:
+                  title: Bajaj
+                  amount: 15
+                  category: Transport
+                  date: 2025-11-12
+            example:
+              title: Bajaj
+              amount: 15
+              category: Transport
+              date: 2025-11-12
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+  /expenses/cmhw6w3vy0005jmuymj4mmxiu:
+    delete:
+      tags:
+      - Misc
+      summary: Delete Expense
+      operationId: DeleteExpense
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+components:
+  schemas:
+    registerrequest:
+      title: registerrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: b@b.com
+        password: '123456'
+    loginrequest:
+      title: loginrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: b@b.com
+        password: '123456'
+    ADDExpensesRequest:
+      title: ADDExpensesRequest
+      required:
+      - title
+      - amount
+      - category
+      - date
+      type: object
+      properties:
+        title:
+          type: string
+        amount:
+          type: integer
+          format: int32
+        category:
+          type: string
+        date:
+          type: string
+      example:
+        title: Bajaj
+        amount: 15
+        category: Transport
+        date: 2025-11-12
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Misc
+  description: ''
