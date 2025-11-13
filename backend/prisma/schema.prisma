@@ -22,6 +22,7 @@ model Expense {
   category  String
   date      DateTime
   user      User     @relation(fields: [userId], references: [id])
+  note      String? 
   userId    String
   createdAt DateTime @default(now())
 }

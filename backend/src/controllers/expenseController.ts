@@ -7,16 +7,17 @@ const expenseSchema = z.object({
   amount: z.number().positive(),
   category: z.string(),
   date: z.string(),
+  note: z.string().optional(),
 });
 
 // CREATE
 export const addExpense = async (req: Request, res: Response) => {
   try {
-    const { title, amount, category, date } = expenseSchema.parse(req.body);
+    const { title, amount, category, date , note} = expenseSchema.parse(req.body);
     const userId = (req as any).userId;
 
     const expense = await prisma.expense.create({
-      data: { title, amount, category, date: new Date(date), userId },
+      data: { title, amount, category, date: new Date(date), userId , note,},
     });
 
     res.status(201).json(expense);

@@ -6,7 +6,9 @@ interface Expense {
   amount: number;
   category: string;
   date: string;
+  note?: string; // optional note
 }
+
 
 export const getExpenses = async (): Promise<Expense[]> => {
   const res = await api.get<Expense[]>("/expenses");

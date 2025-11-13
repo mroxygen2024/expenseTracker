@@ -5,6 +5,7 @@ export interface Expense {
   title: string;
   amount: number;
   category: string;
+  note?: string; // optional note
   date: string;
   userId?: string;
   createdAt?: string;
