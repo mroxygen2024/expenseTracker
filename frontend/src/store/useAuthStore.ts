@@ -29,18 +29,23 @@ export const useAuthStore = create<AuthState>()(
 
       // 🟩 Login
       login: async (email, password) => {
-        set({ isLoading: true, error: null });
-        try {
-          const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, { email, password });
-          const { token, user } = res.data;
-          set({ token, user });
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        } catch (err: any) {
-          set({ error: err.response?.data?.message || "Login failed" });
-        } finally {
-          set({ isLoading: false });
-        }
-      },
+  set({ isLoading: true, error: null });
+  try {
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, { email, password });
+    const { token, user } = res.data;
+
+    localStorage.setItem("token", token); // store token
+    set({ token, user });
+
+    // Optional: set default header for immediate requests
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  } catch (err: any) {
+    set({ error: err.response?.data?.message || "Login failed" });
+  } finally {
+    set({ isLoading: false });
+  }
+},
+
 
       // 🟦 Register
       register: async (name, email, password) => {

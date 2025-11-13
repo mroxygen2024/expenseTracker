@@ -9,11 +9,11 @@ import NotFound from "./pages/NotFound";
 import { useAuthStore } from "./store/useAuthStore";
 
 const App: React.FC = () => {
-  const { token, checkAuth } = useAuthStore();
-
+ const checkAuth = useAuthStore((state) => state.checkAuth);
+  const token = useAuthStore.getState().token; // get token from Zustand store
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
+  }, []);
 
   return (
     <BrowserRouter>
