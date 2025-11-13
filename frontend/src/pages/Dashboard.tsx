@@ -4,7 +4,7 @@ import ExpenseForm from "../components/ExpenseForm";
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#f6f9fa]">
+    <div className="min-h-screen bg-[#0d4f66]">
       <div className="p-4 max-w-4xl mx-auto space-y-6">
         <ExpenseForm />
         <ExpenseList />

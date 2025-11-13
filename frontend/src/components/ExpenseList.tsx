@@ -2,22 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useExpenseStore } from "../store/useExpenseStore";
 import { getExpenses, deleteExpense } from "../services/expenses";
 import toast from "react-hot-toast";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import ExpenseDetails from "./ExpenseDetails"
 import type { Expense } from "./ExpenseDetails";
 
 const ExpenseList: React.FC = () => {
-  const {
-    expenses,
-    setExpenses,
-    removeExpense,
-    loading,
-    setLoading,
-    setError,
-    error,
-  } = useExpenseStore();
-
+  const { expenses, setExpenses, removeExpense, loading, setLoading, setError, error } = useExpenseStore();
   const [selectedExpense, setSelectedExpense] = useState<Expense | null>(null);
 
   useEffect(() => {
@@ -55,39 +45,36 @@ const ExpenseList: React.FC = () => {
 
   return (
     <>
-      <Card className="shadow-md">
-        <CardHeader>
-          <CardTitle className="text-xl">Expenses</CardTitle>
-        </CardHeader>
-        <CardContent>
+      <div className="max-w-md mx-auto">
+        <h2 className="text-xl font-semibold mb-3 text-white">Expenses</h2>
+
+        <div className="bg-[#0a3242] rounded shadow-md p-3 space-y-2">
           {loading ? (
-            <p className="text-center py-4">Loading expenses...</p>
+            <p className="text-white/80 text-center py-4">Loading expenses...</p>
           ) : error ? (
-            <p className="text-center py-4 text-red-500">{error}</p>
+            <p className="text-red-500 text-center py-4">{error}</p>
           ) : expenses.length === 0 ? (
-            <p className="text-gray-500 text-center py-4">No expenses yet.</p>
+            <p className="text-white/80 text-center py-4">No expenses yet.</p>
           ) : (
             <ul>
               {expenses.map((e) => (
                 <li
                   key={e.id}
-                  className="flex justify-between items-center p-3 border-b hover:bg-gray-50 transition cursor-pointer"
+                  className="flex justify-between items-center p-3 border border-[#ffffff/20] rounded cursor-pointer hover:bg-[#0f6b8a]/20 transition"
                   onClick={() => setSelectedExpense(e)}
                 >
                   <div>
-                    <p className="font-medium">{e.title}</p>
-                    <p className="text-sm text-gray-600">
-                      ${e.amount} • {e.category} •{" "}
-                      {new Date(e.date).toLocaleDateString()}
+                    <p className="font-medium text-white">{e.title}</p>
+                    <p className="text-sm text-white/80">
+                      ${e.amount} • {e.category} • {new Date(e.date).toLocaleDateString()}
                     </p>
                   </div>
                   <Button
                     onClick={(event) => {
-                      event.stopPropagation(); // prevent modal open on delete
+                      event.stopPropagation();
                       handleDelete(e.id);
                     }}
-                    variant="destructive"
-                    size="sm"
+                    className="bg-white text-[#0a3242] hover:bg-gray-200 font-semibold py-1 px-3 rounded"
                   >
                     Delete
                   </Button>
@@ -95,14 +82,11 @@ const ExpenseList: React.FC = () => {
               ))}
             </ul>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       {selectedExpense && (
-        <ExpenseDetails
-          expense={selectedExpense}
-          onClose={() => setSelectedExpense(null)}
-        />
+        <ExpenseDetails expense={selectedExpense} onClose={() => setSelectedExpense(null)} />
       )}
     </>
   );

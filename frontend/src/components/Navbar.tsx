@@ -1,30 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
-import { useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
-  const { user} = useAuthStore();
+  const { user } = useAuthStore();
+
   const handleLogout = () => {
     logout();
-    navigate("/"); // navigate to home or login page
+    navigate("/"); // redirect after logout
   };
 
   return (
-    <nav className="bg-[#0f6b8a] text-white p-4 flex justify-between items-center shadow-md">
+    <nav className="bg-[#0f6b8a] text-white p-4 flex flex-wrap justify-between items-center shadow-md">
       <Link to="/" className="text-2xl font-bold tracking-wide">
         myExpense
       </Link>
 
-      <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center gap-3 mt-2 sm:mt-0">
         {user ? (
           <>
-            <span className="font-medium">{user.name}</span>
+            <span className="font-medium text-white">{user.name}</span>
             <button
               onClick={handleLogout}
-              className="bg-[#0a3242] hover:bg-[#08303b] px-4 py-1 rounded transition"
+              className="bg-[#0a3242] hover:bg-[#08303b] px-4 py-1 rounded text-white font-medium transition"
             >
               Logout
             </button>

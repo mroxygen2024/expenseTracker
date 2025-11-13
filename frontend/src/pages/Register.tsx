@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-// ✅ Zod validation schema
 const registerSchema = z.object({
   name: z.string().min(2, "Name is too short"),
   email: z.string().email("Invalid email address"),
@@ -31,10 +30,9 @@ const Register: React.FC = () => {
 
     const result = registerSchema.safeParse(form);
     if (!result.success) {
-  setError(result.error.issues[0].message); // ✅ use .issues, not .errors
-  return;
-}
-
+      setError(result.error.issues[0].message);
+      return;
+    }
 
     try {
       setLoading(true);
@@ -42,25 +40,24 @@ const Register: React.FC = () => {
       navigate("/login");
     } catch (err: any) {
       setError(err?.response?.data?.message || "Something went wrong");
-      
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#f6f9fa]">
-      <Card className="w-full max-w-md shadow-md">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a3242] to-[#0f6b8a] p-4">
+      <Card className="w-full max-w-md bg-white/10 backdrop-blur-lg shadow-lg border border-white/20 text-white rounded-2xl">
         <CardHeader>
-          <CardTitle className="text-center text-[#0a3242] text-2xl font-semibold">
-            Create Account
+          <CardTitle className="text-center text-3xl font-semibold text-white">
+            Create Account ✨
           </CardTitle>
         </CardHeader>
 
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block mb-1 text-sm font-medium text-gray-700">
+              <label className="block mb-1 text-sm font-medium text-white/90">
                 Name
               </label>
               <Input
@@ -70,11 +67,12 @@ const Register: React.FC = () => {
                 value={form.name}
                 onChange={handleChange}
                 required
+                className="bg-white/20 border-none text-white placeholder:text-white/70"
               />
             </div>
 
             <div>
-              <label className="block mb-1 text-sm font-medium text-gray-700">
+              <label className="block mb-1 text-sm font-medium text-white/90">
                 Email
               </label>
               <Input
@@ -84,11 +82,12 @@ const Register: React.FC = () => {
                 value={form.email}
                 onChange={handleChange}
                 required
+                className="bg-white/20 border-none text-white placeholder:text-white/70"
               />
             </div>
 
             <div>
-              <label className="block mb-1 text-sm font-medium text-gray-700">
+              <label className="block mb-1 text-sm font-medium text-white/90">
                 Password
               </label>
               <Input
@@ -98,24 +97,25 @@ const Register: React.FC = () => {
                 value={form.password}
                 onChange={handleChange}
                 required
+                className="bg-white/20 border-none text-white placeholder:text-white/70"
               />
             </div>
 
             {error && (
-              <p className="text-sm text-red-500 text-center">{error}</p>
+              <p className="text-sm text-red-400 text-center">{error}</p>
             )}
 
             <Button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#0f6b8a] hover:bg-[#0a3242]"
+              className="w-full bg-white text-[#0a3242] hover:bg-gray-200 font-semibold"
             >
               {loading ? "Registering..." : "Register"}
             </Button>
 
-            <p className="text-sm text-center text-gray-600 mt-3">
+            <p className="text-sm text-center text-white/80 mt-3">
               Already have an account?{" "}
-              <Link to="/login" className="text-[#0f6b8a] font-medium">
+              <Link to="/login" className="text-white underline font-medium hover:text-gray-200">
                 Login
               </Link>
             </p>
@@ -127,5 +127,3 @@ const Register: React.FC = () => {
 };
 
 export default Register;
-
-

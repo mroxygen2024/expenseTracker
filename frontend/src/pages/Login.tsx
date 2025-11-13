@@ -45,18 +45,22 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#f6f9fa] p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a3242] to-[#0f6b8a] p-4">
       <Toaster position="top-center" reverseOrder={false} />
-      <Card className="w-full max-w-md shadow-lg">
+
+      <Card className="w-full max-w-md bg-white/10 backdrop-blur-lg shadow-lg border border-white/20 text-white rounded-2xl">
         <CardHeader>
-          <CardTitle className="text-center text-[#0a3242] text-2xl font-semibold">
-            Login
+          <CardTitle className="text-center text-3xl font-semibold text-white">
+            Welcome Back 👋
           </CardTitle>
         </CardHeader>
+
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block mb-1 text-sm font-medium text-gray-700">Email</label>
+              <label className="block mb-1 text-sm font-medium text-white/90">
+                Email
+              </label>
               <Input
                 type="email"
                 name="email"
@@ -64,10 +68,14 @@ const Login: React.FC = () => {
                 value={form.email}
                 onChange={handleChange}
                 required
+                className="bg-white/20 border-none text-white placeholder:text-white/70"
               />
             </div>
+
             <div>
-              <label className="block mb-1 text-sm font-medium text-gray-700">Password</label>
+              <label className="block mb-1 text-sm font-medium text-white/90">
+                Password
+              </label>
               <Input
                 type="password"
                 name="password"
@@ -75,14 +83,23 @@ const Login: React.FC = () => {
                 value={form.password}
                 onChange={handleChange}
                 required
+                className="bg-white/20 border-none text-white placeholder:text-white/70"
               />
             </div>
-            <Button type="submit" disabled={loading} className="w-full bg-[#0f6b8a] hover:bg-[#0a3242]">
+
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-white text-[#0a3242] hover:bg-gray-200 font-semibold"
+            >
               {loading ? "Logging in..." : "Login"}
             </Button>
-            <p className="text-sm text-center text-gray-600 mt-3">
-              Don't have an account?{" "}
-              <Link to="/register" className="text-[#0f6b8a] font-medium">Register</Link>
+
+            <p className="text-sm text-center text-white/80 mt-3">
+              Don’t have an account?{" "}
+              <Link to="/register" className="text-white underline font-medium hover:text-gray-200">
+                Register
+              </Link>
             </p>
           </form>
         </CardContent>
