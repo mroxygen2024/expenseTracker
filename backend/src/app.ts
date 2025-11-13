@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-   origin: "https://expense-tracker-wine-iota-56.vercel.app", // allow Vite frontend
+   origin: "https://expense-tracker-git-main-fuads-projects-72074421.vercel.app", // allow Vite frontend
   credentials: true
 }));
 
@@ -22,6 +22,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/expenses", expenseRoutes);
 
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 
 const PORT = process.env.PORT;
