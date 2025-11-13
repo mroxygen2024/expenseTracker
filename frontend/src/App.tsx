@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import NotFound from "./pages/NotFound";
 import { useAuthStore } from "./store/useAuthStore";
 
 const App: React.FC = () => {
@@ -26,6 +27,8 @@ const App: React.FC = () => {
           element={token ? <Dashboard /> : <Navigate to="/login" />}
         />
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<NotFound />} />
+        
       </Routes>
     </BrowserRouter>
   );

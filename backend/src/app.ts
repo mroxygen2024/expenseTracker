@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-// import cors from "cors";
+import cors from "cors";
 import authRoutes from "./routes/auth.js";
 import expenseRoutes from "./routes/expenses.js";
 // import swaggerUi from "swagger-ui-express";
@@ -10,7 +10,11 @@ import expenseRoutes from "./routes/expenses.js";
 dotenv.config();
 
 const app = express();
-// app.use(cors());
+app.use(cors({
+   origin: "http://localhost:5173", // allow Vite frontend
+  credentials: true
+}));
+
 app.use(express.json());
 
 

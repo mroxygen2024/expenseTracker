@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const API_BASE = import.meta.env.VITE_API_BASE;
-
 const api = axios.create({
-  baseURL: API_BASE
+  baseURL: import.meta.env.VITE_API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 // Add Authorization header automatically
@@ -16,3 +17,5 @@ api.interceptors.request.use((config) => {
 });
 
 export default api;
+
+

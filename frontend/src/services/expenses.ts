@@ -8,9 +8,9 @@ interface Expense {
   date: string;
 }
 
-export const getExpenses = async () => {
+export const getExpenses = async (): Promise<Expense[]> => {
   const res = await api.get<Expense[]>("/expenses");
-  return res.data;
+  return Array.isArray(res.data) ? res.data : [];
 };
 
 export const createExpense = async (expense: Partial<Expense>) => {
