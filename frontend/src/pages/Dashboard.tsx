@@ -16,9 +16,9 @@ const Dashboard: React.FC = () => {
   }, [setExpenses]);
 
   return (
-    <div className="min-h-screen bg-accent2">
+    <div className="min-h-screen bg-[#f6f9fa]">
       <Navbar />
-      <div className="p-4 max-w-4xl mx-auto">
+      <div className="p-6 max-w-5xl mx-auto space-y-6">
         <ExpenseForm />
         <ExpenseList />
       </div>
