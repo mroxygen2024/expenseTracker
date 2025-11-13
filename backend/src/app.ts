@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-   origin: "http://localhost:5173", // allow Vite frontend
+   origin: "https://expense-tracker-wine-iota-56.vercel.app", // allow Vite frontend
   credentials: true
 }));
 
