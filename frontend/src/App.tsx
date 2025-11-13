@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -9,11 +9,11 @@ import NotFound from "./pages/NotFound";
 import { useAuthStore } from "./store/useAuthStore";
 
 const App: React.FC = () => {
- const checkAuth = useAuthStore((state) => state.checkAuth);
+//  const checkAuth = useAuthStore((state) => state.checkAuth);
   const token = useAuthStore.getState().token; // get token from Zustand store
-  useEffect(() => {
-    checkAuth();
-  }, []);
+  // useEffect(() => {
+  //   checkAuth();
+  // }, []);
 
   return (
     <BrowserRouter>

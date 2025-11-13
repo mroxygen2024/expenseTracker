@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
-  const { user, logout } = useAuthStore();
+  const logout = useAuthStore((state) => state.logout);
+  const navigate = useNavigate();
+  const { user} = useAuthStore();
+  const handleLogout = () => {
+    logout();
+    navigate("/"); // navigate to home or login page
+  };
 
   return (
     <nav className="bg-[#0f6b8a] text-white p-4 flex justify-between items-center shadow-md">
@@ -16,7 +23,7 @@ const Navbar: React.FC = () => {
           <>
             <span className="font-medium">{user.name}</span>
             <button
-              onClick={logout}
+              onClick={handleLogout}
               className="bg-[#0a3242] hover:bg-[#08303b] px-4 py-1 rounded transition"
             >
               Logout
