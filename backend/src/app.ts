@@ -11,8 +11,8 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-   origin: "https://expense-tracker-git-main-fuads-projects-72074421.vercel.app", // allow Vite frontend
-  credentials: true
+   origin: "https://expense-tracker-wine-iota-56.vercel.app", // allow Vite frontend
+  // credentials: true
 }));
 
 app.use(express.json());
