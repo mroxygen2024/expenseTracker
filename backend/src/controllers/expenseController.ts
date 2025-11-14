@@ -16,7 +16,9 @@ export const addExpense = async (req: Request, res: Response) => {
     const userId = (req as any).userId;
 
     const expense = await prisma.expense.create({
-      data: { amount, category, date: new Date(date!), userId , note,},
+      data: { amount, category, ...(date ? { date: new Date(date) } : {}),
+        // Only include note if it exists
+        ...(note ? { note } : {}), userId ,},
     });
 
     res.status(201).json(expense);
