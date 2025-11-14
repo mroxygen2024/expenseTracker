@@ -23,8 +23,6 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             properties:
- *               title:
- *                 type: string
  *               amount:
  *                 type: number
  *               category:
