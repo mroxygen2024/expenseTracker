@@ -3,9 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./routes/auth.js";
 import expenseRoutes from "./routes/expenses.js";
-// import swaggerUi from "swagger-ui-express";
-// import YAML from "yamljs";
-// const swaggerDocument = YAML.load("./utils/swagger.yaml");
+import { setupSwagger } from "./utils/swagger.js";
 
 dotenv.config();
 
@@ -15,13 +13,13 @@ app.use(cors({
    credentials: true
 }));
 
+
+setupSwagger(app);
 app.use(express.json());
 
 
 app.use("/api/auth", authRoutes);
 app.use("/api/expenses", expenseRoutes);
-
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 
