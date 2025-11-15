@@ -8,10 +8,70 @@ import { authenticate } from "../middleware/auth.js";
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /api/expenses:
+ *   post:
+ *     summary: Add a new expense
+ *     tags: [Expenses]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               amount:
+ *                 type: number
+ *               category:
+ *                 type: string
+ *               date:
+ *                 type: string
+ *                 format: date
+ *               note:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Expense added
+ */
 
-router.use(authenticate);
-router.post("/", addExpense);
-router.get("/", getExpenses);
-router.delete("/:id", deleteExpense);
+router.post("/", authenticate, addExpense);
+/**
+ * @swagger
+ * /api/expenses:
+ *   get:
+ *     summary: Get all expenses
+ *     tags: [Expenses]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of expenses
+ */
+
+router.get("/", authenticate, getExpenses);
+/**
+ * @swagger
+ * /api/expenses/{id}:
+ *   delete:
+ *     summary: Delete an expense
+ *     tags: [Expenses]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Expense ID
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Expense deleted
+ */
+
+router.delete("/:id",authenticate, deleteExpense);
 
 export default router;

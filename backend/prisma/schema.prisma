@@ -17,10 +17,9 @@ model User {
 
 model Expense {
   id        String   @id @default(cuid())
-  title     String
   amount    Float
   category  String
-  date      DateTime
+  date      DateTime?
   user      User     @relation(fields: [userId], references: [id])
   note      String? 
   userId    String
