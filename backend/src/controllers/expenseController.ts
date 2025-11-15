@@ -12,13 +12,21 @@ const expenseSchema = z.object({
 // CREATE
 export const addExpense = async (req: Request, res: Response) => {
   try {
-    const { amount, category, date , note} = expenseSchema.parse(req.body);
+    const { amount, category, date, note } = expenseSchema.parse(req.body);
     const userId = (req as any).userId;
 
     const expense = await prisma.expense.create({
-      data: { amount, category, ...(date ? { date: new Date(date) } : {}),
-        // Only include note if it exists
-        ...(note ? { note } : {}), userId ,},
+      data: {
+        amount,
+        category,
+        ...(date ? { date: new Date(date) } : {}),
+        ...(note ? { note } : {}),
+
+        // FIX: Prisma relational connect
+        user: {
+          connect: { id: userId },
+        },
+      },
     });
 
     res.status(201).json(expense);
@@ -26,6 +34,7 @@ export const addExpense = async (req: Request, res: Response) => {
     res.status(400).json({ message: error.message });
   }
 };
+
 
 // GET ALL
 export const getExpenses = async (req: Request, res: Response) => {
