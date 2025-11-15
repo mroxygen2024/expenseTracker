@@ -3,22 +3,21 @@ import { prisma } from "../utils/db.js";
 import { z } from "zod";
 
 const expenseSchema = z.object({
+  title: z.string(),
   amount: z.number().positive(),
   category: z.string(),
-  date: z.string().optional(),
+  date: z.string(),
   note: z.string().optional(),
 });
 
 // CREATE
 export const addExpense = async (req: Request, res: Response) => {
   try {
-    const { amount, category, date , note} = expenseSchema.parse(req.body);
+    const { title, amount, category, date , note} = expenseSchema.parse(req.body);
     const userId = (req as any).userId;
 
     const expense = await prisma.expense.create({
-      data: { amount, category, ...(date ? { date: new Date(date) } : {}),
-        // Only include note if it exists
-        ...(note ? { note } : {}), userId ,},
+      data: { title, amount, category, date: new Date(date), userId , note,},
     });
 
     res.status(201).json(expense);
