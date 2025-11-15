@@ -11,10 +11,10 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Expense" (
     "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
     "amount" DOUBLE PRECISION NOT NULL,
     "category" TEXT NOT NULL,
-    "date" TIMESTAMP(3) NOT NULL,
+    "date" TIMESTAMP(3),
+    "note" TEXT,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
