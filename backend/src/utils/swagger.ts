@@ -13,7 +13,7 @@ export const setupSwagger = (app: Application) => {
       },
       servers: [
         {
-          url: "https://expensetracker-yttf.onrender.com/api",
+          url: "https://expensetracker-yttf.onrender.com",
         },
       ],
       components: {
